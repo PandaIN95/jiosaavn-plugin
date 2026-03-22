@@ -62,34 +62,13 @@ data class Version(val major: Int, val minor: Int, val patch: Int) {
     override fun toString() = "$major.$minor.$patch"
 }
 
-if (System.getenv("USERNAME") != null && System.getenv("PASSWORD") != null) {
-    publishing {
-        repositories {
-            maven {
-                url = if (preRelease) {
-                    uri("https://maven.appujet.site/snapshots")
-                } else {
-                    uri("https://maven.appujet.site/releases")
-                }
-                credentials {
-                    username = System.getenv("USERNAME")
-                    password = System.getenv("PASSWORD")
-                }
-                authentication {
-                    create<BasicAuthentication>("basic")
-                }
-            }
-        }
-
-        publications {
-            create<MavenPublication>("jiosaavn-plugin") {
-                artifactId = "jiosaavn-plugin"
-                version = verName
-                artifact(tasks.shadowJar.get())
-                pom {
-                    packaging = "jar"
-                }
-            }
+publishing {
+    publications {
+        create<MavenPublication>("jiosaavn-plugin") {
+            groupId = "com.github.appujet"
+            artifactId = "jiosaavn-plugin"
+            version = verName
+            artifact(tasks.shadowJar.get())
         }
     }
 }

@@ -15,15 +15,11 @@ java {
 }
 
 allprojects {
-    group = "com.github.appujet"
+    group = "com.github.PandaIN95"
 
     repositories {
         mavenCentral()
         mavenLocal()
-        maven("https://maven.lavalink.dev/releases")
-        maven("https://maven.lavalink.dev/snapshots")
-        maven("https://maven.appujet.site/releases")
-        maven("https://maven.appujet.site/snapshots")
         maven("https://jitpack.io")
     }
 
