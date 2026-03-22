@@ -65,7 +65,7 @@ data class Version(val major: Int, val minor: Int, val patch: Int) {
 publishing {
     publications {
         create<MavenPublication>("jiosaavn-plugin") {
-            groupId = "com.github.appujet"
+            groupId = "com.github.PandaIN95"
             artifactId = "jiosaavn-plugin"
             version = verName
             artifact(tasks.shadowJar.get())
@@ -75,7 +75,7 @@ publishing {
 
 githubRelease {
     token(System.getenv("GITHUB_TOKEN"))
-    owner("appujet")
+    owner("PandaIN95")
     repo("jiosaavn-plugin")
     targetCommitish(System.getenv("RELEASE_TARGET"))
     releaseAssets(tasks.shadowJar.get().outputs.files.toList())
@@ -90,8 +90,8 @@ githubRelease {
             |```yml
             |lavalink:
             |    plugins:
-            |        - dependency: "com.github.appujet:jiosaavn-plugin:$verName"
-            |          repository: https://maven.appujet.site/snapshots
+            |        - dependency: "com.github.PandaIN95:jiosaavn-plugin:$verName"
+            |          repository: "https://jitpack.io"
             |```
         """.trimMargin())
     } else {
