@@ -48,10 +48,10 @@ public class JioSaavnAudioSourceManager extends ExtendedAudioSourceManager {
             if (!matcher.find()) {
                 return null;
             }
-            
+
             String pathType = matcher.group(1);
             String type;
-            if (pathType.equals("song")) {
+            if (pathType.equals("song") || pathType.equals("s/song")) {
                 type = "song";
             } else if (pathType.equals("album") || pathType.equals("p/album")) {
                 type = "album";
@@ -86,7 +86,7 @@ public class JioSaavnAudioSourceManager extends ExtendedAudioSourceManager {
 
     @Override
     public void encodeTrack(AudioTrack audioTrack, DataOutput dataOutput) throws IOException {
-        
+
     }
 
     @Override
@@ -145,7 +145,7 @@ public class JioSaavnAudioSourceManager extends ExtendedAudioSourceManager {
                 .collect(Collectors.toList());
         final String albumUrl = data.get("url").text();
         final String artwork = data.get("artworkUrl").text();
-        
+
         final int trackCount = (int) data.get("totalSongs").asLong(0);
         return new JioSaavnAudioPlaylist(albumTitle, tracks, ExtendedAudioPlaylist.Type.ALBUM, albumUrl, artwork,
                 null, trackCount);
@@ -206,7 +206,8 @@ public class JioSaavnAudioSourceManager extends ExtendedAudioSourceManager {
 
     public AudioItem getRecommendations(String identifier) {
 
-        final JsonBrowser json = this.fetchJson("/recommendations?id=" + identifier + "&limit=" + recommendationsTrackLimit);
+        final JsonBrowser json = this
+                .fetchJson("/recommendations?id=" + identifier + "&limit=" + recommendationsTrackLimit);
 
         if (json.isNull() || !json.get("tracks").isList()) {
             return AudioReference.NO_TRACK;

@@ -1,6 +1,5 @@
 package com.github.appujet.plugin;
 
-
 import com.github.appujet.jiosaavn.source.JioSaavnAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import dev.arbjerg.lavalink.api.AudioPlayerManagerConfiguration;
@@ -13,10 +12,10 @@ import org.springframework.stereotype.Service;
 public class JiosaavnPlugin implements AudioPlayerManagerConfiguration {
     private static final Logger log = LoggerFactory.getLogger(JiosaavnPlugin.class);
 
-    private final JioSaavnConfig sourcesConfig;
+    private final JioSaavnConfigUwU sourcesConfig;
     private JioSaavnAudioSourceManager jioSaavn;
 
-    public JiosaavnPlugin(JioSaavnConfig sourcesConfig) {
+    public JiosaavnPlugin(JioSaavnConfigUwU sourcesConfig) {
         log.info("Loaded JioSaavn plugin...");
         this.sourcesConfig = sourcesConfig;
         if (this.sourcesConfig.getApiURL() != null) {
