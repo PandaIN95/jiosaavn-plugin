@@ -33,7 +33,7 @@ jobs:
 
       - name: Build plugin and create release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
           RELEASE_TARGET: ${{ github.sha }}
           PRERELEASE: ${{ github.event.inputs.prerelease }}
         run: |
